@@ -4,9 +4,18 @@ from datetime import datetime
 import math
 from ...models import Set, Show, Artist, Venue
 
-def get_setlistfm_setlists(page):
-  print(page)
-  url = f'https://api.setlist.fm/rest/1.0/user/Jeffer/attended'
+def seed_setlists(username):
+  data = get_setlistfm_setlists(1, username)
+  total_pages = math.floor(data['total'] / data['itemsPerPage'])
+
+  for page in range(0, total_pages):
+    page = page+1
+    data = get_setlistfm_setlists(page, username)
+    print(data)
+    create_setlists(data['setlist'])
+
+def get_setlistfm_setlists(page, username):
+  url = f'https://api.setlist.fm/rest/1.0/user/{username}/attended'
   response = requests.get(
     url,
     params = {
@@ -19,18 +28,6 @@ def get_setlistfm_setlists(page):
   )
   data = response.json()
   return data
-
-def seed_setlists():
-  data = get_setlistfm_setlists(1)
-  total_pages = math.floor(data['total'] / data['itemsPerPage'])
-  print(total_pages)
-
-  for page in range(0, total_pages):
-    page = page+1
-    data = get_setlistfm_setlists(page)
-    print(data)
-    create_setlists(data['setlist'])
-
 
 def create_setlists(setlists):
   for setlist in setlists:
@@ -78,10 +75,14 @@ def clear_venues():
   Venue.objects.all().delete()
 
 class Command(BaseCommand):
+
+  def add_arguments(self, parser):
+    parser.add_argument('username', type=str)
+
   def handle(self, *args, **options):
     clear_setlists()
     clear_shows()
     clear_artists()
     clear_venues()
-    seed_setlists()
+    seed_setlists(options['username'])
     print('completed')
