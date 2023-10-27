@@ -50,7 +50,7 @@ const Venues: React.FC = ():React.ReactElement => {
       }
     })
     .catch((err) => console.log(err));
-  }, [searchValue, page, totalPages])
+  }, [searchValue, page])
 
   return (
     <>

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { NavLink, Outlet } from "react-router-dom";
-import { THEME_PRIMARY } from "src/constants/general";
+import { Outlet } from "react-router-dom";
 import MenuLink from "src/components/MenuLink";
 
 const Music: React.FC = ():React.ReactElement => {

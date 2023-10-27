@@ -40,7 +40,7 @@ const Shows: React.FC = ():React.ReactElement => {
       }
     })
     .catch((err) => console.log(err));
-  }, [page, totalPages])
+  }, [page])
 
 
   return (

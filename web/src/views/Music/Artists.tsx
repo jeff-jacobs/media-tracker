@@ -50,7 +50,7 @@ const Artists: React.FC = ():React.ReactElement => {
       setTotalPages(Math.ceil(res.data.count / LIMIT));
     })
     .catch((err) => console.log(err));
-  }, [searchValue, page, totalPages])
+  }, [searchValue, page]);
 
   return (
     <>
