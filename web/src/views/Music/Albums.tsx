@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
 import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader';
-import { Artist } from './Artists';
+import { Artist } from './Artists/interfaces';
 
 const LIMIT = 30;
 
@@ -46,9 +46,7 @@ const Albums: React.FC = ():React.ReactElement => {
     })
     .then(res => {
       setAlbums(res.data.results);
-      if (!totalPages) {
-        setTotalPages(Math.ceil(res.data.count / LIMIT));
-      }
+      setTotalPages(Math.ceil(res.data.count / LIMIT));
     })
     .catch((err) => console.log(err));
   }, [searchValue, page])

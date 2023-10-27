@@ -2,11 +2,11 @@ import { styled } from '@mui/material';
 import { THEME_SECONDARY } from 'src/constants/general';
 
 export const ViewHeader = styled('div')({
-  fontSize: '2rem',
+  fontSize: '2.5rem',
   fontWeight: 900,
   color: 'white',
+  marginBottom: '30px',
   '& .parent': {
-    // fontWeight: 400,
     fontSize: '1rem',
     color: THEME_SECONDARY,
   }

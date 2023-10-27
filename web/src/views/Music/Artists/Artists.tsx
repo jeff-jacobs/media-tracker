@@ -1,27 +1,28 @@
 import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
-import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader';
 import { THEME_SECONDARY } from 'src/constants/general';
+import { Artist } from './interfaces';
 
 const LIMIT = 30;
 
-export type Artist = {
-  id: number;
-  name: string;
-  sets: number[];
+interface Props {
+  showId?: number;
 }
 
-const Artists: React.FC = ():React.ReactElement => {
+const Artists: React.FC<Props> = ({
+  showId,
+}):React.ReactElement => {
 
   const [searchValue, setSearchValue] = React.useState<string>();
   const [searchInput, setSearchInput] = React.useState<string>();
 
   const [artists, setArtists] = React.useState<Artist[]>([]);
   const [page, setPage] = React.useState<number>(1);
-  const [totalPages, setTotalPages] = React.useState<number | undefined>(undefined);
+  const [totalPages, setTotalPages] = React.useState<number>(0);
 
   const handleSearchInputChanged = (event: any) => {
     setSearchInput(event.target.value);
@@ -43,6 +44,7 @@ const Artists: React.FC = ():React.ReactElement => {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,
         search: searchValue,
+        sets__show__id: showId,
       }
     })
     .then(res => {
@@ -50,7 +52,7 @@ const Artists: React.FC = ():React.ReactElement => {
       setTotalPages(Math.ceil(res.data.count / LIMIT));
     })
     .catch((err) => console.log(err));
-  }, [searchValue, page]);
+  }, [showId, searchValue, page]);
 
   return (
     <>
@@ -77,10 +79,10 @@ const Artists: React.FC = ():React.ReactElement => {
             </ArtistItem>
         ) : (<li>No artists currently.</li>)}
       </ArtistList>
-      <Pagination
+      {totalPages > 1 && <Pagination
         count={totalPages}
         onChange={(event: any, value: number) => setPage(value)}
-      />
+      />}
     </>
   )
 }

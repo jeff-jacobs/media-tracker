@@ -2,45 +2,41 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Pagination } from '@mui/material';
+import { Show } from './interfaces';
 import { ViewHeader } from 'src/components/ViewHeader';
-import { Artist } from './Artists';
-import { Venue } from './Venues';
 
 const LIMIT = 20;
 
-export type Show = {
-  id: number;
-  date: string;
-  sets: Set[];
-  venue: Venue;
+interface Props {
+  artistId?: number;
+  venueId?: number;
 }
 
-export type Set = {
-  id: number;
-  artist: Artist;
-}
-
-const Shows: React.FC = ():React.ReactElement => {
+const Shows: React.FC<Props> = ({
+  artistId,
+  venueId,
+}):React.ReactElement => {
 
   const [shows, setShows] = React.useState<Show[]>([]);
   const [page, setPage] = React.useState<number>(1);
-  const [totalPages, setTotalPages] = React.useState<number | undefined>(undefined);
+  const [totalPages, setTotalPages] = React.useState<number>(0);
 
   React.useEffect(() => {
+    console.log(artistId);
     axios.get('http://localhost:8000/api/music/shows/', {
       params: {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,
+        sets__artist__id: artistId,
+        venue__id: venueId,
       }
     })
     .then(res => {
       setShows(res.data.results)
-      if (!totalPages) {
-        setTotalPages(Math.ceil(res.data.count / LIMIT));
-      }
+      setTotalPages(Math.ceil(res.data.count / LIMIT));
     })
     .catch((err) => console.log(err));
-  }, [page])
+  }, [artistId, venueId, page])
 
 
   return (
@@ -53,10 +49,12 @@ const Shows: React.FC = ():React.ReactElement => {
           </li>
         ) : (<li>No shows currently.</li>)}
       </ul>
-      <Pagination
-        count={totalPages}
-        onChange={(event: any, value: number) => setPage(value)}
-      />
+      {totalPages > 1 && (
+        <Pagination
+          count={totalPages}
+          onChange={(event: any, value: number) => setPage(value)}
+        />
+      )}
     </>
   )
 }

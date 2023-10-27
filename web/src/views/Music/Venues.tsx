@@ -45,9 +45,7 @@ const Venues: React.FC = ():React.ReactElement => {
     })
     .then(res => {
       setVenues(res.data.results);
-      if (!totalPages) {
-        setTotalPages(Math.ceil(res.data.count / LIMIT));
-      }
+      setTotalPages(Math.ceil(res.data.count / LIMIT));
     })
     .catch((err) => console.log(err));
   }, [searchValue, page])
