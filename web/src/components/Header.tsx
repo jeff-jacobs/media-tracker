@@ -1,27 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { styled } from '@mui/material';
-import { THEME_PRIMARY } from 'src/constants/general';
+import MenuLink from './MenuLink';
 
 const Header: React.FC = (): React.ReactElement => {
   return (
     <HeaderContainer>
-      <Link to="/">Home</Link>
-      <Link to="/music/artists">Music</Link>
+      <div className='container'>
+        {/* <MenuLink to='/' className='app-name'>MEDIA TRACKER</MenuLink> */}
+        <MenuLink to='/music'>
+          <i className='fa-solid fa-music'></i>
+          Music
+        </MenuLink>
+        <MenuLink to='/movies' className='disabled'>
+          <i className='fa-solid fa-film'></i>
+          Movies
+        </MenuLink>
+        <MenuLink to='/games' className='disabled'>
+          <i className='fa-solid fa-gamepad'></i>
+          Games
+        </MenuLink>
+        <MenuLink to='/books' className='disabled'>
+          <i className='fa-solid fa-book'></i>
+          Books
+        </MenuLink>
+      </div>
     </HeaderContainer>
   )
 }
 
 const HeaderContainer = styled('div')({
-  textAlign: 'center',
   padding: '20px',
-  background: '#ddd',
-  fontFamily: 'Solway',
-  fontWeight: 600,
-  '& a': {
-    marginRight: '5px',
-    color: THEME_PRIMARY,
-  }
+  background: '#333',
 });
 
 export default Header;

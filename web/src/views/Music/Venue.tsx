@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import ViewHeader from 'src/components/ViewHeader';
+import { ViewHeader } from 'src/components/ViewHeader';
 import { Venue } from './Venues';
 
 const VenueDetail: React.FC = ():React.ReactElement => {
@@ -17,7 +17,10 @@ const VenueDetail: React.FC = ():React.ReactElement => {
 
   return (
     <>
-      <ViewHeader>{venue?.name || 'Error'}</ViewHeader>
+      <ViewHeader>
+        <div className='parent'>Venues</div>
+        {venue?.name || 'Error'}
+      </ViewHeader>
     </>
   )
 }

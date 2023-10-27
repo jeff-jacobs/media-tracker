@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
 import { Link } from 'react-router-dom';
-import ViewHeader from 'src/components/ViewHeader';
+import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader';
 
 const LIMIT = 30;
 
@@ -54,17 +54,19 @@ const Venues: React.FC = ():React.ReactElement => {
 
   return (
     <>
-      <ViewHeader>Venues</ViewHeader>
-      <div style={{marginBottom: '10px'}}>
-        <input
-          type="text"
-          name="user"
-          value={searchInput}
-          onChange={handleSearchInputChanged}
-          onKeyDown={handleSearchInputKeydown}
-        />
-        <button onClick={handleSearchSubmitted}>Search Album</button>
-      </div>
+      <ViewHeaderSearchContainer>
+        <ViewHeader>Venues</ViewHeader>
+        <div style={{ padding: '10px 0' }}>
+          <input
+            type="text"
+            name="user"
+            value={searchInput}
+            onChange={handleSearchInputChanged}
+            onKeyDown={handleSearchInputKeydown}
+          />
+          <button onClick={handleSearchSubmitted}>Search Album</button>
+        </div>
+      </ViewHeaderSearchContainer>
       <ul>
         {venues.length ? venues?.map(venue =>
           <li key={venue.id}>

@@ -2,16 +2,17 @@ import React from "react";
 import styled from "@emotion/styled";
 import { NavLink, Outlet } from "react-router-dom";
 import { THEME_PRIMARY } from "src/constants/general";
+import MenuLink from "src/components/MenuLink";
 
 const Music: React.FC = ():React.ReactElement => {
   return (
     <>
       <HeaderContainer>
-        <NavLink to="/music/artists">Artists</NavLink>
-        <NavLink to="/music/albums">Albums</NavLink>
-        <NavLink to="/music/shows">Shows</NavLink>
-        <NavLink to="/music/venues">Venues</NavLink>
-        <NavLink to="/music/setlistfm">SetlistFM</NavLink>
+        <MenuLink to="/music/artists">Artists</MenuLink>
+        <MenuLink to="/music/albums">Albums</MenuLink>
+        <MenuLink to="/music/shows">Shows</MenuLink>
+        <MenuLink to="/music/venues">Venues</MenuLink>
+        <MenuLink to="/music/setlistfm">SetlistFM</MenuLink>
       </HeaderContainer>
       <Outlet></Outlet>
     </>
@@ -19,14 +20,10 @@ const Music: React.FC = ():React.ReactElement => {
 }
 
 const HeaderContainer = styled('div')({
-  textAlign: 'center',
-  padding: '20px',
-  marginBottom: '20px',
-  fontFamily: 'Solway',
-  fontWeight: 600,
+  padding: '20px 0 40px',
   '& a': {
-    marginRight: '5px',
-    color: THEME_PRIMARY,
+    fontSize: '1.125rem',
+    fontWeight: 400,
   }
 });
 

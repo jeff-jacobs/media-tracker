@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import ViewHeader from 'src/components/ViewHeader';
+import { ViewHeader } from 'src/components/ViewHeader';
 import { Show } from './Shows';
 import { Link, useParams } from 'react-router-dom';
 
@@ -17,7 +17,10 @@ const ShowDetail: React.FC = ():React.ReactElement => {
 
   return (
     <>
-      <ViewHeader>{show ? `${show.date} - ${show.venue.name}` : 'Error'}</ViewHeader>
+      <ViewHeader>
+        <div className='parent'>Shows</div>
+        {show ? `${show.date} - ${show.venue.name}` : 'Error'}
+      </ViewHeader>
       <ul>
         {show?.sets?.map(set => (
           <li>

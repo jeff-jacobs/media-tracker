@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Pagination } from '@mui/material';
-import ViewHeader from 'src/components/ViewHeader';
+import { ViewHeader } from 'src/components/ViewHeader';
 import { Artist } from './Artists';
 import { Venue } from './Venues';
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
-import ViewHeader from 'src/components/ViewHeader';
+import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { THEME_SECONDARY } from 'src/constants/general';
 
 const LIMIT = 30;
 
@@ -53,23 +54,25 @@ const Artists: React.FC = ():React.ReactElement => {
 
   return (
     <>
-      <ViewHeader>Artists</ViewHeader>
-      <div style={{marginBottom: '10px'}}>
-        <input
-          type="text"
-          name="user"
-          value={searchInput}
-          onChange={handleSearchInputChanged}
-          onKeyDown={handleSearchInputKeydown}
-        />
-        <button onClick={handleSearchSubmitted}>Search Artist</button>
-      </div>
+      <ViewHeaderSearchContainer>
+        <ViewHeader>Artists</ViewHeader>
+        <div style={{ padding: '10px 0'}}>
+          <input
+            type="text"
+            name="user"
+            value={searchInput}
+            onChange={handleSearchInputChanged}
+            onKeyDown={handleSearchInputKeydown}
+          />
+          <button onClick={handleSearchSubmitted}>Search Artist</button>
+        </div>
+      </ViewHeaderSearchContainer>
       <ArtistList>
         {artists.length ? artists?.map(artist =>
             <ArtistItem key={artist.id}>
               <Link to={`/music/artists/${artist.id}`}>
-                {artist.name}
-                <div>{artist.sets.length}</div>
+                <div className="name">{artist.name}</div>
+                <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div>
               </Link>
             </ArtistItem>
         ) : (<li>No artists currently.</li>)}
@@ -84,19 +87,35 @@ const Artists: React.FC = ():React.ReactElement => {
 
 const ArtistList = styled('ul')({
   listStyle: 'none',
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '10px',
+  display: 'grid',
+  gridTemplateColumns: '33% 33% 33%',
+  gridGap: '8px',
   margin: 0,
   padding: 0,
-  width: '100%'
+  width: '100%',
+  '@media (max-width: 900px)': {
+    gridTemplateColumns: '50% 50%',
+  },
+  '@media (max-width: 600px)': {
+    gridTemplateColumns: '100%',
+  }
 })
 
 const ArtistItem = styled('li')({
-  flex: '0 0 250px',
-  border: '1px gray solid',
   padding: '20px',
   textAlign: 'center',
+  background: 'black',
+  '& a': {
+    textDecoration: 'none',
+  },
+  '& .name': {
+    fontSize: '1.25rem',
+    fontWeight: 700,
+  },
+  '& .details': {
+    fontSize: '0.875rem',
+    color: THEME_SECONDARY,
+  }
 })
 
 export default Artists;

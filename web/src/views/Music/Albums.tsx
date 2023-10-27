@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
-import ViewHeader from 'src/components/ViewHeader';
+import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader';
 import { Artist } from './Artists';
 
 const LIMIT = 30;
@@ -55,17 +55,19 @@ const Albums: React.FC = ():React.ReactElement => {
 
   return (
     <>
-      <ViewHeader>Albums</ViewHeader>
-      <div style={{marginBottom: '10px'}}>
-        <input
-          type="text"
-          name="user"
-          value={searchInput}
-          onChange={handleSearchInputChanged}
-          onKeyDown={handleSearchInputKeydown}
-        />
-        <button onClick={handleSearchSubmitted}>Search Album</button>
-      </div>
+      <ViewHeaderSearchContainer>
+        <ViewHeader>Albums</ViewHeader>
+        <div style={{ padding: '10px 0'}}>
+          <input
+            type="text"
+            name="user"
+            value={searchInput}
+            onChange={handleSearchInputChanged}
+            onKeyDown={handleSearchInputKeydown}
+          />
+          <button onClick={handleSearchSubmitted}>Search Album</button>
+        </div>
+      </ViewHeaderSearchContainer>
       <ul>
         {albums.length ? albums?.map(album =>
           <li key={album.id}>
