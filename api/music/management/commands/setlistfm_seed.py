@@ -80,9 +80,9 @@ class Command(BaseCommand):
     parser.add_argument('username', type=str)
 
   def handle(self, *args, **options):
-    clear_setlists()
-    clear_shows()
-    clear_artists()
-    clear_venues()
+    # clear_setlists()
+    # clear_shows()
+    # clear_artists()
+    # clear_venues()
     seed_setlists(options['username'])
     print('completed')

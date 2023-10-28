@@ -1,23 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
+import styled from '@emotion/styled';
 import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader';
-import { Artist } from './Artists/interfaces';
+import { Album } from './interfaces';
 
 const LIMIT = 30;
 
-type Album = {
-  id: number;
-  name: string;
-  release: string;
-  artist: Artist;
+interface Props {
+  artistId?: number;
 }
 
-const Albums: React.FC = ():React.ReactElement => {
+const Albums: React.FC<Props> = ({
+  artistId,
+}):React.ReactElement => {
 
   const [albums, setAlbums] = React.useState<Album[]>([]);
   const [page, setPage] = React.useState<number>(1);
-  const [totalPages, setTotalPages] = React.useState<number | undefined>(undefined);
+  const [totalPages, setTotalPages] = React.useState<number>(0);
 
   const [searchValue, setSearchValue] = React.useState<string>();
   const [searchInput, setSearchInput] = React.useState<string>();
@@ -41,7 +41,8 @@ const Albums: React.FC = ():React.ReactElement => {
       params: {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,
-        search: searchValue
+        search: searchValue,
+        artist__id: artistId,
       }
     })
     .then(res => {
@@ -49,7 +50,7 @@ const Albums: React.FC = ():React.ReactElement => {
       setTotalPages(Math.ceil(res.data.count / LIMIT));
     })
     .catch((err) => console.log(err));
-  }, [searchValue, page])
+  }, [artistId, searchValue, page])
 
   return (
     <>
@@ -66,19 +67,32 @@ const Albums: React.FC = ():React.ReactElement => {
           <button onClick={handleSearchSubmitted}>Search Album</button>
         </div>
       </ViewHeaderSearchContainer>
-      <ul>
+      <AlbumList>
         {albums.length ? albums?.map(album =>
           <li key={album.id}>
-            {album.artist.name} "{album.name}"
+            <img src={album.cover_art} alt={`${album.artist.name} - ${album.name}`}></img>
+            {!artistId && album.artist.name} "{album.name}"
           </li>
         ) : (<li>No albums currently.</li>)}
-      </ul>
-      <Pagination
+      </AlbumList>
+      {totalPages > 1 && <Pagination
         count={totalPages}
         onChange={(event: any, value: number) => setPage(value)}
-      />
+      />}
     </>
   )
 }
+
+const AlbumList = styled('ul')({
+  display: 'grid',
+  listStyle: 'none',
+  margin: '0',
+  padding: '0',
+  gridTemplateColumns: '15% 15% 15% 15% 15% 15%',
+  gridGap: '10px',
+  '& img': {
+    width: '100%',
+  }
+})
 
 export default Albums;

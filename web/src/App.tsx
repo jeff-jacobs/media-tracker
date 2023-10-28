@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Music from './views/Music';
 import Artists from './views/Music/Artists/Artists';
 import Artist from './views/Music/Artists/Artist';
-import Albums from './views/Music/Albums';
+import Albums from './views/Music/Albums/Albums';
 import Shows from './views/Music/Shows/Shows';
 import ShowDetail from './views/Music/Shows/Show';
 import Venues from './views/Music/Venues';

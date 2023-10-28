@@ -1,14 +1,7 @@
 from rest_framework import serializers
-from ..models import Artist, Set
-
-class ArtistSetSerializer(serializers.ModelSerializer):
-   class Meta:
-      model = Set
-      fields = ('id',)
+from ..models import Artist
 
 class ArtistSerializer(serializers.ModelSerializer):
   class Meta:
       model = Artist
-      fields = ('id', 'name', 'sets')
-
-
+      fields = ('id', 'name', 'sets', 'albums')

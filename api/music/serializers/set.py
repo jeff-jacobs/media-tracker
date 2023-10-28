@@ -6,4 +6,4 @@ class SetSerializer(serializers.ModelSerializer):
    artist = ArtistSerializer(read_only=True)
    class Meta:
       model = Set
-      fields = ('id', 'show', 'artist')
+      fields = ('id', 'show', 'artist', 'order')

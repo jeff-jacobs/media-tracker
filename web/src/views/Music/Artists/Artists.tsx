@@ -7,7 +7,7 @@ import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader
 import { THEME_SECONDARY } from 'src/constants/general';
 import { Artist } from './interfaces';
 
-const LIMIT = 30;
+const LIMIT = 36;
 
 interface Props {
   showId?: number;
@@ -74,7 +74,7 @@ const Artists: React.FC<Props> = ({
             <ArtistItem key={artist.id}>
               <Link to={`/music/artists/${artist.id}`}>
                 <div className="name">{artist.name}</div>
-                <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div>
+                {/* <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div> */}
               </Link>
             </ArtistItem>
         ) : (<li>No artists currently.</li>)}
@@ -90,11 +90,14 @@ const Artists: React.FC<Props> = ({
 const ArtistList = styled('ul')({
   listStyle: 'none',
   display: 'grid',
-  gridTemplateColumns: '33% 33% 33%',
+  gridTemplateColumns: '25% 25% 25% 25%',
   gridGap: '8px',
   margin: 0,
   padding: 0,
   width: '100%',
+  '@media (max-width: 1200px)': {
+    gridTemplateColumns: '33% 33% 33%',
+  },
   '@media (max-width: 900px)': {
     gridTemplateColumns: '50% 50%',
   },

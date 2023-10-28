@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { ViewHeader } from 'src/components/ViewHeader';
 import { Artist } from './interfaces';
 import Shows from '../Shows/Shows';
+import Albums from '../Albums/Albums';
 
 const ArtistDetail: React.FC = ():React.ReactElement => {
 
@@ -23,6 +24,7 @@ const ArtistDetail: React.FC = ():React.ReactElement => {
         {artist?.name || 'Error'}
       </ViewHeader>
       {artist && <Shows artistId={artist?.id} />}
+      {artist && <Albums artistId={artist?.id} />}
     </>
   )
 }

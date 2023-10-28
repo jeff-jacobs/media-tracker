@@ -15,6 +15,7 @@ admin.site.register(Album, AlbumAdmin)
 
 class SetInline(admin.TabularInline):
     model = Set
+    ordering = ['order']
 
 class ShowAdmin(admin.ModelAdmin):
     list_display = ('id', 'date')
