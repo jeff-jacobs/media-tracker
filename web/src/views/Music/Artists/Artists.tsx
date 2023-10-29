@@ -68,19 +68,19 @@ const Artists: React.FC<Props> = ({
 const ArtistList = styled('ul')({
   listStyle: 'none',
   display: 'grid',
-  gridTemplateColumns: '25% 25% 25% 25%',
+  gridTemplateColumns: '1fr 1fr 1fr 1fr',
   gridGap: '8px',
   margin: '0',
   padding: '0',
   width: '100%',
   '@media (max-width: 1200px)': {
-    gridTemplateColumns: '33% 33% 33%',
+    gridTemplateColumns: '1fr 1fr 1fr',
   },
   '@media (max-width: 900px)': {
-    gridTemplateColumns: '50% 50%',
+    gridTemplateColumns: '1fr 1fr',
   },
   '@media (max-width: 600px)': {
-    gridTemplateColumns: '100%',
+    gridTemplateColumns: '1fr',
   }
 })
 

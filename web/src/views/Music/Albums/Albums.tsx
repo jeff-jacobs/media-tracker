@@ -67,8 +67,20 @@ const AlbumList = styled('ul')({
   listStyle: 'none',
   margin: '0',
   padding: '0',
-  gridTemplateColumns: '15% 15% 15% 15% 15% 15%',
+  gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
   gridGap: '10px',
+  '@media (max-width: 1200px)': {
+    gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+  },
+  '@media (max-width: 900px)': {
+    gridTemplateColumns: '1fr 1fr 1fr',
+  },
+  '@media (max-width: 600px)': {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  '@media (max-width: 400px)': {
+    gridTemplateColumns: '1fr',
+  },
   '& li': {
     borderRadius: '5px',
     overflow: 'hidden',
