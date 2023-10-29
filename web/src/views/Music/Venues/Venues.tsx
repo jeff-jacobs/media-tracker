@@ -3,13 +3,9 @@ import axios from 'axios';
 import { Pagination } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ViewHeader from 'src/components/ViewHeader';
+import { Venue } from './interfaces';
 
 const LIMIT = 30;
-
-export type Venue = {
-  id: number;
-  name: string;
-}
 
 const Venues: React.FC = ():React.ReactElement => {
 
@@ -36,18 +32,22 @@ const Venues: React.FC = ():React.ReactElement => {
   return (
     <>
       <ViewHeader onSearch={(value) => setSearchValue(value)}>Venues</ViewHeader>
-      <ul>
-        {venues.length ? venues?.map(venue =>
-          <li key={venue.id}>
-            <Link to={`/music/venues/${venue.id}`}>{venue.name}</Link>
-          </li>
-        ) : (<li>No venues currently.</li>)}
-      </ul>
-      <Pagination
-        style={{ marginTop: '10px' }}
-        count={totalPages}
-        onChange={(event: any, value: number) => setPage(value)}
-      />
+      {venues.length ? 
+        <>
+          <ul>
+            {venues?.map(venue =>
+              <li key={venue.id}>
+                <Link to={`/music/venues/${venue.id}`}>{venue.name}</Link>
+              </li>
+            )}
+          </ul>
+          <Pagination
+            style={{ marginTop: '10px' }}
+            count={totalPages}
+            onChange={(event: any, value: number) => setPage(value)}
+          />
+        </>
+      : (<li>No venues available.</li>)}
     </>
   )
 }

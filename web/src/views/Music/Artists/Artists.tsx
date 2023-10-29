@@ -41,21 +41,26 @@ const Artists: React.FC<Props> = ({
   return (
     <>
       <ViewHeader onSearch={(value) => setSearchValue(value)}>Artists</ViewHeader>
-      <ArtistList>
-        {artists.length ? artists?.map(artist =>
-            <ArtistItem key={artist.id}>
-              <Link to={`/music/artists/${artist.id}`}>
-                <div className="name">{artist.name}</div>
-                {/* <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div> */}
-              </Link>
-            </ArtistItem>
-        ) : (<li>No artists currently.</li>)}
-      </ArtistList>
-      {totalPages > 1 && <Pagination
-        style={{ marginTop: '10px' }}
-        count={totalPages}
-        onChange={(event: any, value: number) => setPage(value)}
-      />}
+      {artists.length ?
+        <>
+          <ArtistList>
+          {artists?.map(artist =>
+              <ArtistItem key={artist.id}>
+                <Link to={`/music/artists/${artist.id}`}>
+                  <div className="name">{artist.name}</div>
+                  {/* <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div> */}
+                </Link>
+              </ArtistItem>
+          )}
+        </ArtistList>
+        {totalPages > 1 && <Pagination
+          style={{ marginTop: '10px' }}
+          count={totalPages}
+          onChange={(event: any, value: number) => setPage(value)}
+        />}
+      </>
+      : (<div>No artists available.</div>)
+      }
     </>
   )
 }
@@ -80,10 +85,11 @@ const ArtistList = styled('ul')({
 })
 
 const ArtistItem = styled('li')({
-  padding: '20px',
   textAlign: 'center',
   background: 'black',
   '& a': {
+    display: 'block',
+    padding: '20px',
     textDecoration: 'none',
   },
   '& .name': {

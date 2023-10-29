@@ -39,19 +39,25 @@ const Albums: React.FC<Props> = ({
   return (
     <>
       <ViewHeader onSearch={(value) => setSearchValue(value)}>Albums</ViewHeader>
-      <AlbumList>
-        {albums.length ? albums?.map(album =>
-          <li key={album.id}>
-            <img src={album.cover_art} alt={`${album.artist.name} - ${album.name}`}></img>
-            <div className="text">{!artistId && album.artist.name} "{album.name}"</div>
-          </li>
-        ) : (<li>No albums currently.</li>)}
-      </AlbumList>
-      {totalPages > 1 && <Pagination
-        style={{ marginTop: '10px' }}
-        count={totalPages}
-        onChange={(event: any, value: number) => setPage(value)}
-      />}
+      {albums.length ? 
+        <>
+          <AlbumList>
+            {albums?.map(album =>
+              <li key={album.id}>
+                <img src={album.cover_art} alt={`${album.artist.name} - ${album.name}`}></img>
+                <div className="text">{!artistId && album.artist.name} "{album.name}"</div>
+              </li>
+            )}
+          </AlbumList>
+          {totalPages > 1 && <Pagination
+            style={{ marginTop: '10px' }}
+            count={totalPages}
+            onChange={(event: any, value: number) => setPage(value)}
+          />}
+        </>
+        : <div>No albums available.</div>
+      }
+      
     </>
   )
 }

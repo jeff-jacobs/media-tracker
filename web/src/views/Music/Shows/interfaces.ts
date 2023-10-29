@@ -1,5 +1,5 @@
+import { Venue } from 'src/views/Music/Venues/interfaces';
 import { Artist } from '../Artists/interfaces';
-import { Venue } from '../Venues';
 
 export type Show = {
   id: number;
