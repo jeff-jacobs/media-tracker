@@ -52,6 +52,7 @@ const Artists: React.FC<Props> = ({
         ) : (<li>No artists currently.</li>)}
       </ArtistList>
       {totalPages > 1 && <Pagination
+        style={{ marginTop: '10px' }}
         count={totalPages}
         onChange={(event: any, value: number) => setPage(value)}
       />}
@@ -64,8 +65,8 @@ const ArtistList = styled('ul')({
   display: 'grid',
   gridTemplateColumns: '25% 25% 25% 25%',
   gridGap: '8px',
-  margin: 0,
-  padding: 0,
+  margin: '0',
+  padding: '0',
   width: '100%',
   '@media (max-width: 1200px)': {
     gridTemplateColumns: '33% 33% 33%',

@@ -51,6 +51,7 @@ const Shows: React.FC<Props> = ({
       </ul>
       {totalPages > 1 && (
         <Pagination
+          style={{ marginTop: '10px' }}
           count={totalPages}
           onChange={(event: any, value: number) => setPage(value)}
         />

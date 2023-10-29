@@ -44,6 +44,7 @@ const Venues: React.FC = ():React.ReactElement => {
         ) : (<li>No venues currently.</li>)}
       </ul>
       <Pagination
+        style={{ marginTop: '10px' }}
         count={totalPages}
         onChange={(event: any, value: number) => setPage(value)}
       />
