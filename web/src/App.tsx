@@ -12,10 +12,17 @@ import Venues from './views/Music/Venues';
 import VenueDetail from './views/Music/Venue';
 import SetlistFM from './views/Music/SetlistFM';
 import ComingSoon from './views/ComingSoon';
+import { THEME_PRIMARY, THEME_SECONDARY } from './constants/general';
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    primary: {
+      main: THEME_PRIMARY,
+    },
+    secondary: {
+      main: THEME_SECONDARY,
+    }
   },
 });
 
