@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material';
 import Header from './components/Header';
 import Music from './views/Music';
 import Artists from './views/Music/Artists/Artists';
@@ -12,10 +13,17 @@ import VenueDetail from './views/Music/Venue';
 import SetlistFM from './views/Music/SetlistFM';
 import ComingSoon from './views/ComingSoon';
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
 const App: React.FC = (): React.ReactElement => {
   return (
     <div className="App">
-      <Header/>
+      <ThemeProvider theme={darkTheme}>
+        <Header/>
         <div className="container">
           <Routes>
             <Route path="/music" element={<Music/>}>
@@ -33,6 +41,7 @@ const App: React.FC = (): React.ReactElement => {
             <Route path="/books" element={<ComingSoon/>}></Route>
           </Routes>
         </div>
+      </ThemeProvider>
     </div>
   );
 }

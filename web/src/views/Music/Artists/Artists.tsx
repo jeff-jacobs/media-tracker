@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Pagination } from '@mui/material';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { ViewHeader, ViewHeaderSearchContainer } from 'src/components/ViewHeader';
+import ViewHeader from 'src/components/ViewHeader';
 import { THEME_SECONDARY } from 'src/constants/general';
 import { Artist } from './interfaces';
 
@@ -17,27 +17,11 @@ const Artists: React.FC<Props> = ({
   showId,
 }):React.ReactElement => {
 
-  const [searchValue, setSearchValue] = React.useState<string>();
-  const [searchInput, setSearchInput] = React.useState<string>();
-
   const [artists, setArtists] = React.useState<Artist[]>([]);
   const [page, setPage] = React.useState<number>(1);
   const [totalPages, setTotalPages] = React.useState<number>(0);
-
-  const handleSearchInputChanged = (event: any) => {
-    setSearchInput(event.target.value);
-  }
-
-  const handleSearchInputKeydown = (event: any) => {
-    if (event.keyCode === 13) {
-      handleSearchSubmitted();
-    }
-  }
-
-  const handleSearchSubmitted = () => {
-    setSearchValue(searchInput);
-  }
-
+  const [searchValue, setSearchValue] = React.useState<string>();
+  
   React.useEffect(() => {
     axios.get('http://localhost:8000/api/music/artists/', {
       params: {
@@ -56,19 +40,7 @@ const Artists: React.FC<Props> = ({
 
   return (
     <>
-      <ViewHeaderSearchContainer>
-        <ViewHeader>Artists</ViewHeader>
-        <div style={{ padding: '10px 0'}}>
-          <input
-            type="text"
-            name="user"
-            value={searchInput}
-            onChange={handleSearchInputChanged}
-            onKeyDown={handleSearchInputKeydown}
-          />
-          <button onClick={handleSearchSubmitted}>Search Artist</button>
-        </div>
-      </ViewHeaderSearchContainer>
+      <ViewHeader onSearch={(value) => setSearchValue(value)}>Artists</ViewHeader>
       <ArtistList>
         {artists.length ? artists?.map(artist =>
             <ArtistItem key={artist.id}>

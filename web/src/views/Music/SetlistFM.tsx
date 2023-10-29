@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { ViewHeader } from "src/components/ViewHeader";
+import ViewHeader from "src/components/ViewHeader";
 
 const SetlistFM: React.FC = ():React.ReactElement => {
 
