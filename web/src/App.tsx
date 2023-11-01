@@ -10,7 +10,6 @@ import Shows from './views/Music/Shows/Shows';
 import ShowDetail from './views/Music/Shows/Show';
 import Venues from './views/Music/Venues/Venues';
 import VenueDetail from './views/Music/Venues/Venue';
-import SetlistFM from './views/Music/SetlistFM';
 import ComingSoon from './views/ComingSoon';
 import { THEME_PRIMARY, THEME_SECONDARY } from './constants/general';
 
@@ -41,7 +40,6 @@ const App: React.FC = (): React.ReactElement => {
               <Route path="/music/shows/:id" element={<ShowDetail/>}></Route>
               <Route path="/music/venues" element={<Venues/>}></Route>
               <Route path="/music/venues/:id" element={<VenueDetail/>}></Route>
-              <Route path="/music/setlistfm" element={<SetlistFM/>}></Route>
             </Route>
             <Route path="/movies" element={<ComingSoon/>}></Route>
             <Route path="/games" element={<ComingSoon/>}></Route>

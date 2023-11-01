@@ -27,5 +27,4 @@ router.register(r'music/venues', MusicViews.VenueListView, 'venue')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/music/setlistfm/attended/<str:user>/', MusicViews.setlistfm_attended)
 ]
