@@ -1,3 +1,4 @@
+import os
 import requests
 from django.core.management.base import BaseCommand
 from datetime import datetime
@@ -23,7 +24,7 @@ def get_setlistfm_setlists(page, username):
     },
     headers = {
       'accept': 'application/json',
-      'x-api-key': '4JLKCbu35-6Ii7tJycxxcZC652xQV75rYG8N'
+      'x-api-key': os.environ.get('SETLISTFM_API_KEY')
     }
   )
   data = response.json()

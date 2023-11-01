@@ -11,7 +11,6 @@ const Music: React.FC = ():React.ReactElement => {
         <MenuLink to="/music/albums">Albums</MenuLink>
         <MenuLink to="/music/shows">Shows</MenuLink>
         <MenuLink to="/music/venues">Venues</MenuLink>
-        <MenuLink to="/music/setlistfm">SetlistFM</MenuLink>
       </HeaderContainer>
       <Outlet></Outlet>
     </>

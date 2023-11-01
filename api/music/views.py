@@ -52,19 +52,3 @@ class ShowListView(viewsets.ModelViewSet):
 class SetListView(viewsets.ModelViewSet):
   serializer_class = SetSerializer
   queryset = Set.objects.all()
-
-
-def setlistfm_attended(request, user):
-  url = f'https://api.setlist.fm/rest/1.0/user/{user}/attended'
-  response = requests.get(
-    url,
-    params = {
-      'p': request.GET.get('page')
-    },
-    headers = {
-      'accept': 'application/json',
-      'x-api-key': '4JLKCbu35-6Ii7tJycxxcZC652xQV75rYG8N'
-    }
-  )
-  data = response.json()
-  return JsonResponse(data)
