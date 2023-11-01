@@ -1,3 +1,5 @@
+**NOTE: I may replace this with ViteJS, but here is the boilerplate for CRA for now.**
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
