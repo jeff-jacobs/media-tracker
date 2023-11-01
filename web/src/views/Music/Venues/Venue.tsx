@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { ViewHeader } from 'src/components/ViewHeader';
-import { Venue } from './Venues';
+import ViewHeader from 'src/components/ViewHeader';
+import Shows from '../Shows/Shows';
+import { Venue } from './interfaces';
 
 const VenueDetail: React.FC = ():React.ReactElement => {
 
@@ -21,6 +22,7 @@ const VenueDetail: React.FC = ():React.ReactElement => {
         <div className='parent'>Venues</div>
         {venue?.name || 'Error'}
       </ViewHeader>
+      {venue && <Shows venueId={venue.id} />}
     </>
   )
 }

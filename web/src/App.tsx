@@ -1,21 +1,36 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material';
 import Header from './components/Header';
 import Music from './views/Music';
-import Artists from './views/Music/Artists';
-import Artist from './views/Music/Artist';
-import Albums from './views/Music/Albums';
-import Shows from './views/Music/Shows';
-import ShowDetail from './views/Music/Show';
-import Venues from './views/Music/Venues';
-import VenueDetail from './views/Music/Venue';
+import Artists from './views/Music/Artists/Artists';
+import Artist from './views/Music/Artists/Artist';
+import Albums from './views/Music/Albums/Albums';
+import Shows from './views/Music/Shows/Shows';
+import ShowDetail from './views/Music/Shows/Show';
+import Venues from './views/Music/Venues/Venues';
+import VenueDetail from './views/Music/Venues/Venue';
 import SetlistFM from './views/Music/SetlistFM';
 import ComingSoon from './views/ComingSoon';
+import { THEME_PRIMARY, THEME_SECONDARY } from './constants/general';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: THEME_PRIMARY,
+    },
+    secondary: {
+      main: THEME_SECONDARY,
+    }
+  },
+});
 
 const App: React.FC = (): React.ReactElement => {
   return (
     <div className="App">
-      <Header/>
+      <ThemeProvider theme={darkTheme}>
+        <Header/>
         <div className="container">
           <Routes>
             <Route path="/music" element={<Music/>}>
@@ -33,6 +48,7 @@ const App: React.FC = (): React.ReactElement => {
             <Route path="/books" element={<ComingSoon/>}></Route>
           </Routes>
         </div>
+      </ThemeProvider>
     </div>
   );
 }

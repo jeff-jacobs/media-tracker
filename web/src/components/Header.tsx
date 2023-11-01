@@ -29,7 +29,7 @@ const Header: React.FC = (): React.ReactElement => {
 }
 
 const HeaderContainer = styled('div')({
-  padding: '20px',
+  padding: '20px 0',
   background: '#333',
 });
 

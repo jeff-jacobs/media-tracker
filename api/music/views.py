@@ -11,17 +11,24 @@ from .serializers.set import SetSerializer
 class ArtistListView(viewsets.ModelViewSet):
   serializer_class = ArtistSerializer
   queryset = Artist.objects.all()
+  filterset_fields = (
+    'id',
+    'sets__show__id',
+  )
   search_fields = ( 
-      'name', 
-      'abbreviation',
+    'name', 
+    'abbreviation',
   )
 
 class AlbumListView(viewsets.ModelViewSet):
   serializer_class = AlbumSerializer
   queryset = Album.objects.all()
+  filterset_fields = (
+    'artist__id',
+  )
   search_fields = ( 
       'name', 
-      'artist__name'
+      'artist__name',
   )
 
 class VenueListView(viewsets.ModelViewSet):
@@ -35,6 +42,10 @@ class ShowListView(viewsets.ModelViewSet):
   serializer_class = ShowSerializer
   queryset = Show.objects.all()
   filterset_fields = (
+    'sets__artist__id',
+    'venue__id',
+  )
+  search_fields = (
     'id',
   )
 
