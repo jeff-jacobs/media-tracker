@@ -4,17 +4,19 @@ Django Python application.
 
 ## Installing Django within your existing virtualenv
 
-```
-pip install django
-pip install django-admin
-pip install django-environ
-pip install djangorestframework
-pip install djangorestframework-simplejwt
-pip install django-cors-headers
-pip install django-filter
-pip install psycopg2
-pip install requests
-```
+`pipenv install`
+
+Pipfile includes following packages:
+
+- django
+- django-admin
+- django-environ
+- djangorestframework
+- djangorestframework-simplejwt
+- django-cors-headers
+- django-filter
+- psycopg2
+- requests
 
 ## .env
 
