@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Artist, Album, Show, Set, Venue
+from .models.artist import Artist
+from .models.album import Album
+from .models.show import Show
+from .models.set import Set
+from .models.venue import Venue
 
 class ArtistAdmin(admin.ModelAdmin):
     list_display = ('name', 'id')

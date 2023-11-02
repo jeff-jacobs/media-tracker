@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from ..models import Show, Set
+from ..models.show import Show
+from ..models.set import Set
 from ..serializers.set import SetSerializer
 from ..serializers.venue import VenueSerializer
 

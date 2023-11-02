@@ -3,7 +3,10 @@ import requests
 from django.core.management.base import BaseCommand
 from datetime import datetime
 import math
-from ...models import Set, Show, Artist, Venue
+from ...models.artist import Artist
+from ...models.show import Show
+from ...models.set import Set
+from ...models.venue import Venue
 
 def seed_setlists(username):
   data = get_setlistfm_setlists(1, username)

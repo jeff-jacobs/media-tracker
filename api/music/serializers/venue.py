@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Venue
+from ..models.venue import Venue
 
 class VenueSerializer(serializers.ModelSerializer):
    class Meta:

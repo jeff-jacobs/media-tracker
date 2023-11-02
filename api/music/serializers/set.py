@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Set
+from ..models.set import Set
 from ..serializers.artist import ArtistSerializer
 
 class SetSerializer(serializers.ModelSerializer):

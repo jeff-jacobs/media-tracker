@@ -1,7 +1,9 @@
-import requests
 from rest_framework import viewsets
-from django.http import JsonResponse
-from .models import Artist, Album, Show, Set, Venue
+from .models.artist import Artist
+from .models.album import Album
+from .models.show import Show
+from .models.set import Set
+from .models.venue import Venue
 from .serializers.artist import ArtistSerializer
 from .serializers.album import AlbumSerializer
 from .serializers.venue import VenueSerializer
