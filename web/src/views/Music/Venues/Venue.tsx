@@ -11,7 +11,7 @@ const VenueDetail: React.FC = ():React.ReactElement => {
   const [venue, setVenue] = React.useState<Venue>();
 
   React.useEffect(() => {
-    axios.get(`http://localhost:8000/api/music/venues/${id}/`)
+    axios.get(`http://localhost:8000/music/venues/${id}/`)
     .then(res => setVenue(res.data))
     .catch((err) => console.log(err));
   }, [id])

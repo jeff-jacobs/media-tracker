@@ -23,7 +23,7 @@ const Artists: React.FC<Props> = ({
   const [searchValue, setSearchValue] = React.useState<string>();
   
   React.useEffect(() => {
-    axios.get('http://localhost:8000/api/music/artists/', {
+    axios.get('http://localhost:8000/music/artists/', {
       params: {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,

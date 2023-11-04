@@ -9,6 +9,7 @@ body {
 
 .App {
   font-family: 'Inter Tight', sans-serif;
+  padding-bottom: 100px;
 }
 
 a {
@@ -17,6 +18,11 @@ a {
 
 .App-link {
   color: #61dafb;
+}
+
+hr {
+  margin: 40px 0;
+  border: 1px #777 solid;
 }
 
 .container {

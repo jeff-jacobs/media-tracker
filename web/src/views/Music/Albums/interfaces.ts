@@ -7,3 +7,9 @@ export type Album = {
   artist: Artist;
   cover_art: string;
 }
+
+export type RankedAlbumList = {
+  id: number;
+  name: string;
+  albums: Album[];
+}

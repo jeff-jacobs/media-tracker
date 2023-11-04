@@ -23,7 +23,7 @@ const Shows: React.FC<Props> = ({
 
   React.useEffect(() => {
     console.log(artistId);
-    axios.get('http://localhost:8000/api/music/shows/', {
+    axios.get('http://localhost:8000/music/shows/', {
       params: {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,

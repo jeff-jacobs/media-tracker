@@ -11,7 +11,7 @@ const ShowDetail: React.FC = ():React.ReactElement => {
   const [show, setShow] = React.useState<Show>();
 
   React.useEffect(() => {
-    axios.get(`http://localhost:8000/api/music/shows/${id}`)
+    axios.get(`http://localhost:8000/music/shows/${id}`)
     .then(res => setShow(res.data))
     .catch((err) => console.log(err));
   }, [id])

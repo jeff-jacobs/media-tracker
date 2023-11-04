@@ -5,6 +5,7 @@ import ViewHeader from 'src/components/ViewHeader';
 import { Artist } from './interfaces';
 import Shows from '../Shows/Shows';
 import Albums from '../Albums/Albums';
+import RankedAlbumLists from '../Albums/RankedAlbumLists';
 
 const ArtistDetail: React.FC = ():React.ReactElement => {
 
@@ -12,7 +13,7 @@ const ArtistDetail: React.FC = ():React.ReactElement => {
   const [artist, setArtist] = React.useState<Artist>();
 
   React.useEffect(() => {
-    axios.get(`http://localhost:8000/api/music/artists/${id}/`)
+    axios.get(`http://localhost:8000/music/artists/${id}/`)
     .then(res => setArtist(res.data))
     .catch((err) => console.log(err));
   }, [id])
@@ -23,8 +24,15 @@ const ArtistDetail: React.FC = ():React.ReactElement => {
         <div className='parent'>Artists</div>
         {artist?.name || 'Error'}
       </ViewHeader>
-      {artist && <Shows artistId={artist?.id} />}
-      {artist && <Albums artistId={artist?.id} />}
+      {artist && 
+        <>
+          <Shows artistId={artist.id} />
+          <hr/>
+          <Albums artistId={artist.id} />
+          <hr/>
+          <RankedAlbumLists artistId={artist.id} />
+        </>
+      }
     </>
   )
 }

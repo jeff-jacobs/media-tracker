@@ -15,7 +15,7 @@ const Venues: React.FC = ():React.ReactElement => {
   const [searchValue, setSearchValue] = React.useState<string>();
 
   React.useEffect(() => {
-    axios.get('http://localhost:8000/api/music/venues/', {
+    axios.get('http://localhost:8000/music/venues/', {
       params: {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,

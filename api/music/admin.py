@@ -1,8 +1,7 @@
 from django.contrib import admin
 from .models.artist import Artist
-from .models.album import Album
-from .models.show import Show
-from .models.set import Set
+from .models.album import Album, RankedAlbumList, RankedAlbum
+from .models.show import Show, Set
 from .models.venue import Venue
 
 class ArtistAdmin(admin.ModelAdmin):
@@ -17,6 +16,16 @@ class AlbumAdmin(admin.ModelAdmin):
 
 admin.site.register(Album, AlbumAdmin)
 
+class RankedAlbumInline(admin.TabularInline):
+    model = RankedAlbum
+    ordering = ['order']
+
+class RankedAlbumListAdmin(admin.ModelAdmin):
+    list_display = ('name', 'id')
+    inlines = [RankedAlbumInline]
+
+admin.site.register(RankedAlbumList, RankedAlbumListAdmin)
+
 class SetInline(admin.TabularInline):
     model = Set
     ordering = ['order']
@@ -26,12 +35,6 @@ class ShowAdmin(admin.ModelAdmin):
     inlines = [SetInline]
 
 admin.site.register(Show, ShowAdmin)
-
-class SetAdmin(admin.ModelAdmin):
-    list_display = ('id', 'show', 'artist')
-    list_filter = ('artist',)
-
-admin.site.register(Set, SetAdmin)
 
 class VenueAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')

@@ -21,7 +21,7 @@ const Albums: React.FC<Props> = ({
   const [searchValue, setSearchValue] = React.useState<string>();
 
   React.useEffect(() => {
-    axios.get('http://localhost:8000/api/music/albums/', {
+    axios.get('http://localhost:8000/music/albums/', {
       params: {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,
@@ -65,7 +65,7 @@ const Albums: React.FC<Props> = ({
 const AlbumList = styled('ul')({
   display: 'grid',
   listStyle: 'none',
-  margin: '0',
+  margin: '0 0 20px',
   padding: '0',
   gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
   gridGap: '10px',
