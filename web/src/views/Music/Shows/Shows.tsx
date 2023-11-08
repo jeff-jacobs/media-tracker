@@ -22,7 +22,6 @@ const Shows: React.FC<Props> = ({
   const [totalPages, setTotalPages] = React.useState<number>(0);
 
   React.useEffect(() => {
-    console.log(artistId);
     axios.get('http://localhost:8000/music/shows/', {
       params: {
         offset: (page - 1) * LIMIT,

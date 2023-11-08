@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
-import styled from '@emotion/styled';
 import ViewHeader from 'src/components/ViewHeader';
 import { Album } from './interfaces';
+import AlbumGrid from './AlbumGrid';
 
 const LIMIT = 30;
 
@@ -41,14 +41,7 @@ const Albums: React.FC<Props> = ({
       <ViewHeader onSearch={(value) => setSearchValue(value)}>Albums</ViewHeader>
       {albums.length ? 
         <>
-          <AlbumList>
-            {albums?.map(album =>
-              <li key={album.id}>
-                <img src={album.cover_art} alt={`${album.artist.name} - ${album.name}`}></img>
-                <div className="text">{!artistId && album.artist.name} "{album.name}"</div>
-              </li>
-            )}
-          </AlbumList>
+          <AlbumGrid albums={albums} hideArtistName={!!artistId}></AlbumGrid>
           {totalPages > 1 && <Pagination
             style={{ marginTop: '10px' }}
             count={totalPages}
@@ -61,37 +54,5 @@ const Albums: React.FC<Props> = ({
     </>
   )
 }
-
-const AlbumList = styled('ul')({
-  display: 'grid',
-  listStyle: 'none',
-  margin: '0 0 20px',
-  padding: '0',
-  gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
-  gridGap: '10px',
-  '@media (max-width: 1200px)': {
-    gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
-  },
-  '@media (max-width: 900px)': {
-    gridTemplateColumns: '1fr 1fr 1fr',
-  },
-  '@media (max-width: 600px)': {
-    gridTemplateColumns: '1fr 1fr',
-  },
-  '@media (max-width: 400px)': {
-    gridTemplateColumns: '1fr',
-  },
-  '& li': {
-    borderRadius: '5px',
-    overflow: 'hidden',
-    background: 'black',
-  },
-  '& .text': {
-    padding: '6px 10px 10px',
-  },
-  '& img': {
-    width: '100%',
-  }
-})
 
 export default Albums;
