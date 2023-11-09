@@ -2,6 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import { Album, RankedAlbumList } from './interfaces';
+import AlbumItem from './components/AlbumItem';
+import styled from '@emotion/styled';
 
 interface Props {
   listId: number;
@@ -81,43 +83,50 @@ const RankedAlbumListDetail: React.FC<Props> = ({
     <>
       {listName}
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        {Object.entries(lists).map(([key, value]) => (
-          <div key={key}>
-            {key}: {' '}
-            <Droppable droppableId={key}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                >
-                  {
-                    value.map((rankedAlbum: RankedAlbum, index: number) => (
-                      <Draggable
-                        key={rankedAlbum.id}
-                        draggableId={rankedAlbum.id.toString()}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            {rankedAlbum.album.name}
-                          </div>
-                        )}
-                      </Draggable>
-                    ))
-                  }
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </div>
-          
-        ))}
+        <TierWrapper>
+          {Object.entries(lists).map(([key, value]) => (
+            <div key={key}>
+              {key}: {' '}
+              <Droppable droppableId={key}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                  >
+                    {
+                      value.map((rankedAlbum: RankedAlbum, index: number) => (
+                        <Draggable
+                          key={rankedAlbum.id}
+                          draggableId={rankedAlbum.id.toString()}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <AlbumItem album={rankedAlbum.album} />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))
+                    }
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </div>
+          ))}
+        </TierWrapper>
       </DragDropContext>
     </>
   )
 }
+
+const TierWrapper = styled('div')({
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
+  gridGap: '10px',
+})
 
 export default RankedAlbumListDetail;

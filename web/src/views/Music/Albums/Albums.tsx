@@ -2,17 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
 import ViewHeader from 'src/components/ViewHeader';
-import { Album } from './interfaces';
+import { Album, AlbumContext } from './interfaces';
 import AlbumGrid from './AlbumGrid';
 
 const LIMIT = 30;
 
 interface Props {
   artistId?: number;
+  context?: AlbumContext;
 }
 
 const Albums: React.FC<Props> = ({
   artistId,
+  context = 'list',
 }):React.ReactElement => {
 
   const [albums, setAlbums] = React.useState<Album[]>([]);
@@ -41,7 +43,7 @@ const Albums: React.FC<Props> = ({
       <ViewHeader onSearch={(value) => setSearchValue(value)}>Albums</ViewHeader>
       {albums.length ? 
         <>
-          <AlbumGrid albums={albums} hideArtistName={!!artistId}></AlbumGrid>
+          <AlbumGrid albums={albums} context={context}></AlbumGrid>
           {totalPages > 1 && <Pagination
             style={{ marginTop: '10px' }}
             count={totalPages}

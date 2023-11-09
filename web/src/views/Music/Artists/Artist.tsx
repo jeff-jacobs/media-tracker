@@ -28,7 +28,7 @@ const ArtistDetail: React.FC = ():React.ReactElement => {
         <>
           <Shows artistId={artist.id} />
           <hr/>
-          <Albums artistId={artist.id} />
+          <Albums artistId={artist.id} context="artist" />
           <hr/>
           <RankedAlbumLists artistId={artist.id} />
         </>

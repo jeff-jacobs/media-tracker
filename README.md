@@ -23,7 +23,7 @@ Large goals:
 - **Create reasonable models for all media types.** I am going to take this one section by section starting with Music which will include Artists, Albums, Shows/Concerts, Venues and Songs. Along the way, I want to get increasingly comfortable creating API-driven functionality and any necessary business logic.
 - **Allow Ranking of media types.** Whether it is just ranking albums of your favorite artist or creating tier lists for various combinations of items (like favorites from 2023 or favorite horror movies), I want to create a foundation that provides flexibility.
 - **Import data from public APIs.** As a music fan, I enjoy going to concerts. I track shows I have attended through setlist.fm. However, they do not do a great job at providing a single record for a show with multiple artists. One of the first tasks I set for myself was writing a command to pull shows from their public API and mapping to a streamlined Show model.
-- **Give Github Issues a go.** I have years of experience with Jira and some experience with other ticketing platforms (Trello, Microsoft Tasks, ClickUp). But I would like to start pencilling in new features and bugs directly within Github for a change.
+- ~~**Give Github Issues a go.** I have years of experience with Jira and some experience with other ticketing platforms (Trello, Microsoft Tasks, ClickUp). But I would like to start pencilling in new features and bugs directly within Github for a change.~~ _Nevermind, I already dislike these for my purposes. I'm going to use ClickUp, but I may public that publically for visibility later._
 
 ## Code
 

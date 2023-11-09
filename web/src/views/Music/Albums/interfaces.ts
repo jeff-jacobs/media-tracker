@@ -1,6 +1,6 @@
 import { Artist } from "../Artists/interfaces";
 
-export type Album = {
+export interface Album {
   id: number;
   name: string;
   release: string;
@@ -8,8 +8,10 @@ export type Album = {
   cover_art: string;
 }
 
-export type RankedAlbumList = {
+export interface RankedAlbumList {
   id: number;
   name: string;
   albums: Album[];
 }
+
+export type AlbumContext = 'simple' | 'list' | 'artist';
