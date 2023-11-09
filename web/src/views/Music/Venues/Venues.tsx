@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
 import { Link } from 'react-router-dom';
-import ViewHeader from 'src/components/ViewHeader';
+import ViewHeader from '@/components/ViewHeader';
 import { Venue } from './interfaces';
 
 const LIMIT = 30;
@@ -31,7 +31,7 @@ const Venues: React.FC = ():React.ReactElement => {
 
   return (
     <>
-      <ViewHeader onSearch={(value) => setSearchValue(value)}>Venues</ViewHeader>
+      <ViewHeader onSearch={(value: string) => setSearchValue(value)}>Venues</ViewHeader>
       {venues.length ? 
         <>
           <ul>

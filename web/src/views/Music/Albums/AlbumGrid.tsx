@@ -16,7 +16,7 @@ const AlbumGrid: React.FC<Props> = ({
   return (
     <AlbumGridWrapper>
       {albums?.map(album =>
-        <AlbumItem album={album} context={context} />
+        <AlbumItem key={album.id} album={album} context={context} />
       )}
     </AlbumGridWrapper>
   )

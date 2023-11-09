@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Pagination } from '@mui/material';
-import ViewHeader from 'src/components/ViewHeader';
+import ViewHeader from '@/components/ViewHeader';
 import { Album, AlbumContext } from './interfaces';
 import AlbumGrid from './AlbumGrid';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import ViewHeader from 'src/components/ViewHeader';
+import ViewHeader from '@/components/ViewHeader';
 import { Artist } from './interfaces';
 import Shows from '../Shows/Shows';
 import Albums from '../Albums/Albums';

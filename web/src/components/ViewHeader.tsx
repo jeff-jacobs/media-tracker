@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { styled } from '@mui/material';
-import { THEME_SECONDARY } from 'src/constants/general';
+import { THEME_SECONDARY } from '@/constants/general';
 import Search from './Search';
 
 interface Props {

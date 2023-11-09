@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import ViewHeader from 'src/components/ViewHeader';
+import ViewHeader from '@/components/ViewHeader';
 import { RankedAlbumList } from './interfaces';
 import RankedAlbumListDetail from './RankedAlbumList';
 

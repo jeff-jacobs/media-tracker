@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { styled } from '@mui/material';
-import { THEME_PRIMARY } from 'src/constants/general';
+import { THEME_PRIMARY } from '@/constants/general';
 
 const MenuLink = styled(NavLink)({
   textDecoration: 'none',

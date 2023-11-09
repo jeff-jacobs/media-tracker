@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Pagination } from '@mui/material';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import ViewHeader from 'src/components/ViewHeader';
-import { THEME_SECONDARY } from 'src/constants/general';
+import ViewHeader from '@/components/ViewHeader';
+import { THEME_SECONDARY } from '@/constants/general';
 import { Artist } from './interfaces';
 
 const LIMIT = 36;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Pagination } from '@mui/material';
 import { Show } from './interfaces';
-import ViewHeader from 'src/components/ViewHeader';
+import ViewHeader from '@/components/ViewHeader';
 
 const LIMIT = 20;
 
