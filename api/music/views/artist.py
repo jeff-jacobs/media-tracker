@@ -33,7 +33,7 @@ class ArtistListView(APIView, LimitOffsetPagination):
     artist = ArtistCreateSerializer(data=request.data)
     artist.is_valid(raise_exception=True)
     artist.save()
-    return Response(artist.data, status=status.HTTP_201_CREATED)
+    return Response(artist.data, status=status.HTTP_200_OK)
 
 class ArtistDetailView(APIView):
   

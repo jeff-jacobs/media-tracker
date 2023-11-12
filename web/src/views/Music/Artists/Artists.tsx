@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import ViewHeader from '@/components/ViewHeader';
 import { THEME_SECONDARY } from '@/constants/general';
 import { Artist } from './interfaces';
+import AddArtistDialog from './components/AddArtistDialog';
 
 const LIMIT = 36;
 
@@ -38,38 +39,22 @@ const Artists: React.FC<Props> = ({
     .catch((err) => console.log(err));
   }, [showId, searchValue, page]);
 
-  const postNewArtist = () => {
-    const value = 'test';
-    axios.post('http://localhost:8000/music/artists/', {
-      name: value,
-    }).then(res => {
-      console.log(res);
-      setSearchValue(value);
-    })
-    .catch((err) => {
-      console.log('ERROR');
-      console.log(err);
-      if (err.response.status === 409) {
-        window.alert('Artist already exists!');
-        setSearchValue(value);        
-      }
-    });
-  }
+  
 
   return (
     <>
       <ViewHeader onSearch={(value: string) => setSearchValue(value)}>Artists</ViewHeader>
-      <div onClick={postNewArtist}>New Artist</div>
+      <AddArtistDialog />
       {artists.length ?
         <>
           <ArtistList>
           {artists?.map(artist =>
-              <ArtistItem key={artist.id}>
-                <Link to={`/music/artists/${artist.id}`}>
-                  <div className="name">{artist.name}</div>
-                  {/* <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div> */}
-                </Link>
-              </ArtistItem>
+            <ArtistItem key={artist.id}>
+              <Link to={`/music/artists/${artist.id}`}>
+                <div className="name">{artist.name}</div>
+                {/* <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div> */}
+              </Link>
+            </ArtistItem>
           )}
         </ArtistList>
         {totalPages > 1 && <Pagination
