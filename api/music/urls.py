@@ -15,13 +15,12 @@ Including another URLconf
 """
 from django.urls import path, include
 from rest_framework import routers
-from music.views.artist import ArtistListView
+from music.views.artist import ArtistListView, ArtistDetailView
 from music.views.album import AlbumListView, RankedAlbumListView
 from music.views.show import ShowListView
 from music.views.venue import VenueListView
 
 router = routers.DefaultRouter()
-router.register(r'artists', ArtistListView, 'artist')
 router.register(r'albums', AlbumListView, 'album')
 router.register(r'ranked-album-lists', RankedAlbumListView, 'ranked-album-list')
 router.register(r'shows', ShowListView, 'show')
@@ -29,4 +28,6 @@ router.register(r'venues', VenueListView, 'venue')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('artists/', ArtistListView.as_view()),
+    path('artists/<int:id>/', ArtistDetailView.as_view()),
 ]

@@ -27,7 +27,7 @@ const Artists: React.FC<Props> = ({
       params: {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,
-        search: searchValue,
+        name: searchValue,
         sets__show__id: showId,
       }
     })
@@ -38,9 +38,28 @@ const Artists: React.FC<Props> = ({
     .catch((err) => console.log(err));
   }, [showId, searchValue, page]);
 
+  const postNewArtist = () => {
+    const value = 'test';
+    axios.post('http://localhost:8000/music/artists/', {
+      name: value,
+    }).then(res => {
+      console.log(res);
+      setSearchValue(value);
+    })
+    .catch((err) => {
+      console.log('ERROR');
+      console.log(err);
+      if (err.response.status === 409) {
+        window.alert('Artist already exists!');
+        setSearchValue(value);        
+      }
+    });
+  }
+
   return (
     <>
-      <ViewHeader onSearch={(value) => setSearchValue(value)}>Artists</ViewHeader>
+      <ViewHeader onSearch={(value: string) => setSearchValue(value)}>Artists</ViewHeader>
+      <div onClick={postNewArtist}>New Artist</div>
       {artists.length ?
         <>
           <ArtistList>
