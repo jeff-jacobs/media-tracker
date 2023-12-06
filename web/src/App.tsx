@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
 import Header from './components/Header';
 import Music from './views/Music';
@@ -33,7 +33,9 @@ const App: React.FC = (): React.ReactElement => {
         <Header/>
         <div className="container">
           <Routes>
+            <Route path="/" element={<Navigate to="/music/" replace />} />
             <Route path="/music" element={<Music/>}>
+              <Route path="/music" element={<Navigate to="/music/artists" replace />} />
               <Route path="/music/artists" element={<Artists/>}></Route>
               <Route path="/music/artists/:id" element={<Artist/>}></Route>
               <Route path="/music/albums" element={<Albums/>}></Route>
