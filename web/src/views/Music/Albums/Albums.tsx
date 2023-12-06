@@ -4,6 +4,7 @@ import { Pagination } from '@mui/material';
 import ViewHeader from '@/components/ViewHeader';
 import { Album, AlbumContext } from './interfaces';
 import AlbumGrid from './AlbumGrid';
+import AddAlbumDialog from './components/AddAlbumDialog';
 
 const LIMIT = 30;
 
@@ -22,13 +23,13 @@ const Albums: React.FC<Props> = ({
   const [totalPages, setTotalPages] = React.useState<number>(0);
   const [searchValue, setSearchValue] = React.useState<string>();
 
-  React.useEffect(() => {
+  const getAlbums = () => {
     axios.get('http://localhost:8000/music/albums/', {
       params: {
         offset: (page - 1) * LIMIT,
         limit: LIMIT,
         search: searchValue,
-        artist__id: artistId,
+        artist_id: artistId,
       }
     })
     .then(res => {
@@ -36,11 +37,14 @@ const Albums: React.FC<Props> = ({
       setTotalPages(Math.ceil(res.data.count / LIMIT));
     })
     .catch((err) => console.log(err));
-  }, [artistId, searchValue, page])
+  }
+
+  React.useEffect(getAlbums, [artistId, searchValue, page])
 
   return (
     <>
       <ViewHeader onSearch={(value) => setSearchValue(value)}>Albums</ViewHeader>
+      <AddAlbumDialog artistId={artistId} onAlbumAdded={() => getAlbums()}/>
       {albums.length ? 
         <>
           <AlbumGrid albums={albums} context={context}></AlbumGrid>

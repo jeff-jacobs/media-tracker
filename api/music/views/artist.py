@@ -1,6 +1,3 @@
-import json
-from django.http import JsonResponse
-from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.pagination import LimitOffsetPagination
@@ -27,7 +24,6 @@ class ArtistListView(APIView, LimitOffsetPagination):
     return self.get_paginated_response(serializer.data)
   
   def post(self, request):
-    print(request)
 
     try:
       artist_name = request.data['name']

@@ -8,6 +8,11 @@ class AlbumSerializer(serializers.ModelSerializer):
       model = Album
       fields = ('id', 'name', 'release_date', 'artist', 'cover_art')
 
+class AlbumCreateSerializer(serializers.ModelSerializer):
+  class Meta:
+      model = Album
+      fields = ('id', 'name', 'artist', 'cover_art')
+
 class RankedAlbumListSerializer(serializers.ModelSerializer):
   albums = serializers.SerializerMethodField('get_ranked_albums')
   class Meta:
