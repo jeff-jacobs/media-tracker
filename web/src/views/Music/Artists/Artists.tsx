@@ -11,10 +11,12 @@ import AddArtistDialog from './components/AddArtistDialog';
 const LIMIT = 36;
 
 interface Props {
+  canAddNew?: boolean;
   showId?: number;
 }
 
 const Artists: React.FC<Props> = ({
+  canAddNew = true,
   showId,
 }):React.ReactElement => {
 
@@ -29,7 +31,7 @@ const Artists: React.FC<Props> = ({
         offset: (page - 1) * LIMIT,
         limit: LIMIT,
         name: searchValue,
-        sets__show__id: showId,
+        show_id: showId,
       }
     })
     .then(res => {
@@ -44,26 +46,26 @@ const Artists: React.FC<Props> = ({
   return (
     <>
       <ViewHeader onSearch={(value: string) => setSearchValue(value)}>Artists</ViewHeader>
-      <AddArtistDialog />
+      {canAddNew && <AddArtistDialog />}
       {artists.length ?
         <>
           <ArtistList>
-          {artists?.map(artist =>
-            <ArtistItem key={artist.id}>
-              <Link to={`/music/artists/${artist.id}`}>
-                <div className="name">{artist.name}</div>
-                {/* <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div> */}
-              </Link>
-            </ArtistItem>
-          )}
-        </ArtistList>
-        {totalPages > 1 && <Pagination
-          style={{ marginTop: '10px' }}
-          count={totalPages}
-          onChange={(event: any, value: number) => setPage(value)}
-        />}
-      </>
-      : (<div>No artists available.</div>)
+            {artists?.map(artist =>
+              <ArtistItem key={artist.id}>
+                <Link to={`/music/artists/${artist.id}`}>
+                  <div className="name">{artist.name}</div>
+                  {/* <div className="details">{artist.sets.length} {artist.sets.length === 1 ? 'Show' : 'Shows'}</div> */}
+                </Link>
+              </ArtistItem>
+            )}
+          </ArtistList>
+          {totalPages > 1 && <Pagination
+            style={{ marginTop: '10px' }}
+            count={totalPages}
+            onChange={(event: any, value: number) => setPage(value)}
+          />}
+        </>
+        : (<div>No artists available.</div>)
       }
     </>
   )

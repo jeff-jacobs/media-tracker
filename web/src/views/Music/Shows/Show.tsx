@@ -22,7 +22,7 @@ const ShowDetail: React.FC = ():React.ReactElement => {
         <div className='parent'>Shows</div>
         {show ? `${show.date} - ${show.venue.name}` : 'Error'}
       </ViewHeader>
-      {show && <Artists showId={show?.id}></Artists>}
+      {show && <Artists canAddNew={false} showId={show?.id}></Artists>}
     </>
   )
 }

@@ -18,10 +18,11 @@ const darkTheme = createTheme({
     mode: 'dark',
     primary: {
       main: THEME_PRIMARY,
+      contrastText: 'white',
     },
     secondary: {
       main: THEME_SECONDARY,
-    }
+    },
   },
 });
 

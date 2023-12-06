@@ -11,8 +11,14 @@ from ..serializers.artist import ArtistSerializer, ArtistCreateSerializer
 class ArtistListView(APIView, LimitOffsetPagination):
 
   def get(self, request):
+
     artists = Artist.objects.all()
     name = self.request.query_params.get('name')
+    show_id = self.request.query_params.get('show_id')
+
+    if show_id is not None:
+      artists = artists.filter(sets__show__id=show_id).order_by("sets")
+
     if name is not None:
       artists = artists.filter(name__icontains=name)
 

@@ -38,10 +38,14 @@ const AddArtistDialog: React.FC = (): React.ReactElement => {
   return (
     <>
       <Button onClick={handleClickOpen}>Create New Artist</Button>
-      <Dialog open={open} onClose={handleClose} maxWidth="lg">
+      <Dialog open={open} onClose={handleClose} fullWidth={true}>
         <DialogTitle>Create New Artist</DialogTitle>
         <DialogContent>
-          <TextField id="artist-name" label="Artist Name" variant="standard"
+          <TextField
+            id="artist-name"
+            label="Artist Name"
+            variant="standard"
+            fullWidth={true}
             value={artistNameInput}
             onChange={handleChange}
           />
